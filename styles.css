@@ -107,3 +107,18 @@ footer {
     color: white;
     margin-top: 40px;
 }
+.recorrido-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center;
+    padding: 20px;
+}
+
+.recorrido-virtual {
+    width: 80%; /* Ajusta el tamaño según lo necesites */
+    max-width: 800px;
+    height: 450px; /* Ajusta la altura según lo necesites */
+    border-radius: 15px; /* Bordes redondeados */
+    border: 2px solid #ccc; /* Opcional: agrega un borde */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Opcional: sombra para un efecto más elegante */
+}
