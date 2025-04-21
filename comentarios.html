@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exposiciones - Museo Virtual</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+<body>
+    <header>
+        <h1>Museo Virtual</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="exposiciones.html">Exposiciones</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="comentarios.html">Comentarios</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="comentarios">
+        <title>Comentarios de la exposicion</title>
+    <style>
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .radio-group, .checkbox-group {
+            margin: 10px 0;
+        }
+    </style>
+<h1>comentarios de la exposicion</h1>
+    
+<form action="/procesar-formulario" method="post">
+    <h2>Escribe tu comentario</h2>
+    
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+    
+   <h3>Dale una puntuacion al museo virtual</h3> 
+    <label for="rango">Nivel de Satisfacción (1-10):</label>
+    <input type="range" id="rango" name="rango" min="1" max="10" value="5">
+
+    
+    <fieldset>
+        <legend>Intereses en obras:</legend>
+        <div class="checkbox-group">
+    <label for="clasica">Pintura clasica</label>
+            <input type="checkbox" id="clasica" name="intereses" value="clasica">
+            
+        </div>
+        <div class="checkbox-group">
+             <label for="medieval">Pintura medieval</label>
+            <input type="checkbox" id="medieval" name="intereses" value="medieval">
+           
+        </div>
+        <div class="checkbox-group">
+            <label for="renacentista">Pintura renacentista</label>
+            <input type="checkbox" id="renacentista" name="intereses" value="renacentista">
+            
+        </div>
+        <div class="checkbox-group">
+            <label for="barroca">Pintura barroca</label>
+            <input type="checkbox" id="barroca" name="intereses" value="barroca">
+            
+        </div>
+        <div class="checkbox-group">
+             <label for="romantica">pintura romantica</label>
+            <input type="checkbox" id="romantica" name="intereses" value="romantica">
+           
+        </div>
+    </fieldset>
+    
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu comentario aquí..."></textarea>
+    
+    
+    <div class="checkbox-group">
+        <input type="checkbox" id="terminos" name="terminos" required>
+        <label for="terminos">Acepto los términos y condiciones</label>
+    </div>
+    
+    <button type="submit">Enviar</button>
+    <button type="reset">Limpiar</button>
+</form>
+
+    </section>
+    
+   
+
+    
+    <footer>
+        <p>&copy; 2025 Museo Virtual. Todos los derechos reservados.</p>
+    </footer>
+
+
+
+
+</body>
