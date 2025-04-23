@@ -6,6 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exposiciones - Museo Virtual</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+
+        section{
+            width: 100%;
+            padding: 12px;
+            margin-top: 1px;
+            
+            margin-bottom: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 1.6;
+            font-size: large;
+        }
+
+        label{
+            display: block;
+            font-size: larger;
+        }
+        
+
+
+        
+
+
+    </style>
 </head>
 <body>
     <header>
@@ -22,11 +49,22 @@
     </header>
     <section id="inicio">
         <h2>Bienvenidos al Museo Virtual</h2>
-        <p>volver a inicio desde el menu de arriba</p>
+        
+       
+        <label for="inicio_sesion">Ingresar correo:  </label>
+        <input type="email" id="email" required>
+        
+        <label for="contraseña"> Ingresar Contraseña: </label>
+        <input type="password" id="password" required>
+
+        <button type="submit" id="entrar">Ingresar </button>
+
+
+       
         
     </section>
 
-    <script src="script.js"></script>
+    
 
 
 
