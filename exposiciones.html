@@ -5,36 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exposiciones - Museo Virtual</title>
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            height: fit-content;
-            margin: 0 auto;
-            padding: 0 20px;
-            justify-content:end;
-            background-color: #e6e6e6;
-            
-        }
-        section{
-            max-width: 1900px;
-            font-family:'Times New Roman', Times, serif;
-            text-align:center;
-
-        }
-        footer{
-           
-            max-width: 2000px;
-            
-        }
-
-
-
-
-
-    </style>
+    
 </head>
+
 <body>
     <header>
         <h1>Museo Virtual</h1>
@@ -48,22 +21,28 @@
             </ul>
         </nav>
     </header>
-    
-    <section id="exposiciones">
+
+   
+   <div class="izquierdaEx">
+    <section id="expo">
+  
         <h2>Nuestras Exposiciones</h2>
-        <div class="exposicion">
+        
             <h3>Historia del Arte</h3>
             <p>Un recorrido por las grandes obras de la historia.</p>
-        </div>
-        <div class="exposicion">
+       
             <h3>Arte Contemporáneo</h3>
             <p>Las tendencias más innovadoras del arte actual.</p>
-        </div>
-        <div class="exposicion">
+       
             <h3>Escultura y Fotografía</h3>
             <p>Explorando la tridimensionalidad y la captura del instante.</p>
-        </div>
-    </section>
+       
+  </section>
+ </div>
+
+
+<div class="derechaEx">
+    <section id="expo">
     <div class="recorrido-container">
         <iframe 
             title="Recorrido Virtual Galeón de Manila" 
@@ -72,8 +51,17 @@
             allowfullscreen>
         </iframe>
     </div>
-    <footer>
+    </section>
+</div>
+ 
+
+
+<section id="footer">
+
+    
         <p>&copy; 2025 Museo Virtual. Todos los derechos reservados.</p>
     </footer>
+</section>
+
 </body>
 </html>

@@ -57,7 +57,7 @@ nav li {
 }
 
 nav a {
-    color: white;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 18px;
     transition: 0.3s;
@@ -100,12 +100,16 @@ section {
     transform: scale(1.05);
 }
 /* Footer */
-footer {
+#footer {
+    
+    width: 100%;
     text-align: center;
-    padding: 20px;
+    
     background-color: #222;
     color: white;
-    margin-top: 40px;
+    
+    bottom:0;
+    left: 0;
 }
 .recorrido-container {
     display: flex;
@@ -122,3 +126,120 @@ footer {
     border: 2px solid #ccc; /* Opcional: agrega un borde */
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Opcional: sombra para un efecto más elegante */
 }
+  .izquierdaEx {
+    width: 500px; 
+    height: 80vh; 
+    background-color: #e6e6e6; 
+    position:fixed;
+    top: 60px;
+    left: 0;
+    
+    padding: 20px;
+  }
+
+
+.derechaEx{
+
+width: 1400px;
+height: 70vh;
+position:fixed;
+right: -30px;
+top: 150px;
+padding: 20;
+
+}
+.contenedorGal{
+
+    display: flex;
+      align-items: flex-start; 
+      padding: 20px;
+}
+.textoGal{
+    margin-left: 500px;
+    flex: 1;
+    
+    bottom: 50%;
+}
+
+.imagenGal{
+    border: 5px solid #222;
+    height: auto;
+}
+
+navIndex {
+    display: flex;
+    gap: 20px;
+  
+}
+
+navIndex ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+   
+}
+
+navIndex li {
+    align-content:end;
+    
+    
+}
+
+navIndex a {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+    padding: 10px 15px;
+    border-radius: 5px;
+    justify-content: end;
+    
+}
+
+navIndex a:hover {
+    background-color: #ffcc00;
+    color: #222;
+}
+    
+
+
+
+.textoIndex{
+    text-align: center;
+    margin: 10px;
+    background-color: #e6e6e6;
+    
+}
+.centrarBoton{
+
+position: relative;
+right: -40%;
+
+
+}
+.boton-bonito {
+    background-color: #4ca3af; /* Verde */
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .boton-bonito:hover {
+    background-color: #a04545;
+    transform: scale(1.05); /* Se agranda un poco al pasar el mouse */
+  }
+
+
+     
