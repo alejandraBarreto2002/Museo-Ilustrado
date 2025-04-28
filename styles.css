@@ -241,5 +241,57 @@ right: -40%;
     transform: scale(1.05); /* Se agranda un poco al pasar el mouse */
   }
 
+ /* Estilos para el formulario */
+.formulario-registro {
+    width: 350px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Estilo de cada campo del formulario */
+.campo-formulario {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para las etiquetas (labels) */
+.campo-formulario label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilo para los inputs */
+.campo-formulario input {
+    padding: 10px;
+    border: 2px solid #4892d6;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Estilo para el botón */
+button.boton-bonito {
+    padding: 10px 20px;
+    background-color: #4892d6;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+
+/* Hover en el botón */
+button.boton-bonito:hover {
+    background-color: #357ab7;
+}
+
 
      
