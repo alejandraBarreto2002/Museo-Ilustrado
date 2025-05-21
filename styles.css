@@ -126,44 +126,38 @@ section {
     border: 2px solid #ccc; /* Opcional: agrega un borde */
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Opcional: sombra para un efecto más elegante */
 }
-  .izquierdaEx {
-    width: 500px; 
-    height: 80vh; 
-    background-color: #e6e6e6; 
-    position:fixed;
-    top: 60px;
-    left: 0;
-    
-    padding: 20px;
-  }
 
-
-.derechaEx{
-
-width: 1400px;
-height: 70vh;
-position:fixed;
-right: -30px;
-top: 150px;
-padding: 20;
-
-}
 .contenedorGal{
 
-    display: flex;
-      align-items: flex-start; 
-      padding: 20px;
+   display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+    flex-wrap: wrap; /* permite que se acomode bien en pantallas pequeñas */
 }
 .textoGal{
-    margin-left: 500px;
     flex: 1;
-    
-    bottom: 50%;
+    margin: 0;
 }
 
-.imagenGal{
-    border: 5px solid #222;
+.imagenGal img{
+     max-width: 100%;
     height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+    .contenedorGal {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .textoGal {
+        text-align: center;
+    }
 }
 
 navIndex {
@@ -293,5 +287,317 @@ button.boton-bonito:hover {
     background-color: #357ab7;
 }
 
+.horarios-container {
+width: 80%;
+margin: 40px auto;
+background: #f9f9f9;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-     
+.horarios-container h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.horarios-form {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.horarios-form select {
+padding: 8px 12px;
+font-size: 16px;
+border-radius: 6px;
+border: 1px solid #ccc;
+}
+
+.tabla-horarios {
+width: 100%;
+border-collapse: collapse;
+text-align: center;
+}
+
+.tabla-horarios th,
+.tabla-horarios td {
+padding: 10px;
+border: 1px solid #ccc;
+}
+
+.tabla-horarios th {
+background-color: #eee;
+font-weight: bold;
+}
+
+.mensaje-vacio {
+text-align: center;
+font-style: italic;
+color: #555;
+}
+
+/* BOTÓN DE CONSULTAR HORARIOS */
+.horarios-container input[type="submit"] {
+background-color: #ffcc00;
+color: white;
+border: none;
+padding: 10px 18px;
+border-radius: 6px;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.horarios-tabla {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+background-color: #fff;
+text-align: center;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.horarios-tabla th {
+background-color: #000;
+color: white;
+padding: 10px;
+}
+
+.horarios-tabla td {
+padding: 8px;
+border-bottom: 1px solid #ddd;
+}
+
+.gallery-item {
+background: white;
+padding: 10px;
+border-radius: 10px;
+text-align: center;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+transform: translateY(-5px);
+box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item p {
+margin-top: 10px;
+font-weight: bold;
+color: #444;
+}
+
+.gallery a {
+text-decoration: none;
+color: inherit;
+}   
+  form {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+.checkbox-group {
+    margin: 10px 0;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.mensaje-exito {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.estrellas {
+    direction: rtl;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.estrellas input[type="radio"] {
+    display: none;
+}
+
+.estrellas label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.estrellas input[type="radio"]:checked ~ label,
+.estrellas label:hover,
+.estrellas label:hover ~ label {
+    color: gold;
+}
+.comentario {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 700px;
+    background-color: #f9f9f9;
+}
+
+.comentario h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.comentario p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.estrellas-mostradas {
+    color: gold;
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+#reportes h2, #reportes h3 {
+    color: #333;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#reportes ul {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#reportes li {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 10px 0;
+}
+/* Contenedor de las exposiciones */
+.contenedor-exposiciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 120px 40px 60px 40px; /* espacio para el header fijo */
+    justify-content: center;
+}
+
+/* Sección izquierda: texto de exposiciones */
+.izquierdaEx {
+    flex: 1 1 400px;
+    background-color: #e6e6e6;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Sección derecha: iframe */
+.derechaEx {
+    flex: 1 1 600px;
+    padding: 10px;
+}
+
+/* Aseguramos que el iframe se adapte bien */
+.recorrido-virtual {
+    width: 100%;
+    height: 450px;
+    border-radius: 15px;
+    border: 2px solid #ccc;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .contenedor-exposiciones {
+        flex-direction: column;
+        padding: 100px 20px 40px 20px;
+    }
+}
+        .hero {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        /* Carrusel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        /* Frases */
+        .frases {
+            text-align: center;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        /* Calendario */
+        .calendario {
+            background-color: #eee;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        /* Contador */
+        .contador {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+

@@ -1,7 +1,12 @@
 <?php
 session_start();
+if (!isset($_SESSION['visita'])) {
+    $_SESSION['visita'] = 1;
+} else {
+    $_SESSION['visita']++;
+}
 // Verifica el contenido de la sesión
-var_dump($_SESSION); // Esto mostrará el contenido de la sesión
+//var_dump($_SESSION); // Esto mostrará el contenido de la sesión
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,6 +28,7 @@ var_dump($_SESSION); // Esto mostrará el contenido de la sesión
                 <li><a href="galeria.php">Galería</a></li>
                 <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="comentarios.php">Comentarios</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
 
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <li><a href="#">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</a></li>
@@ -35,13 +41,54 @@ var_dump($_SESSION); // Esto mostrará el contenido de la sesión
         </nav>
     </header>
 
-    <div class="textoIndex">
-        <section id="inicio">
-            <h2>Bienvenidos al Museo Virtual</h2>
 
-            <div class="centrarBoton">
-                <!-- Ya no necesitas los botones aquí, están en el menú -->
-            </div>
+<main class="container">
+
+    <section class="hero">
+        <h2>Bienvenidos al Museo Virtual</h2>
+        <p>Explora nuestras colecciones desde cualquier lugar del mundo.</p>
+    </section>
+
+    <!-- Carrusel manual -->
+    <div class="carousel">
+        <img src="https://images.adsttc.com/media/images/5127/2693/b3fc/4b11/a700/0efb/medium_jpg/664532140_h17.jpg?1414349057" class="active" alt="Exposición 1">
+        <img src="https://img.lalr.co/cms/2022/03/31124833/COLP_EXT_106936_553dc-1.jpg?size=xl" alt="Exposición 2">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/galerias-arte-paris-1662025511.jpg" alt="Exposición 3">
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.carousel img');
+        let currentSlide = 0;
+
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 3000);
+    </script>
+
+    <!-- Contador de visitas -->
+    <div class="contador">
+        👁️ Visitas esta sesión: <?php echo $_SESSION['visita']; ?>
+    </div>
+
+    <!-- Frases -->
+    <section class="frases">
+        <p>"El arte no reproduce lo visible. Lo hace visible." – Paul Klee</p>
+        <p>"Todo niño es un artista. El problema es cómo seguir siéndolo al crecer." – Pablo Picasso</p>
+    </section>
+
+    <!-- Calendario simple -->
+    <section class="calendario">
+        <h3>📅 Próximos eventos</h3>
+        <ul>
+            <li>🖼️ 20 Mayo - Nueva exposición: "Colores del alma"</li>
+            <li>🎨 25 Mayo - Taller de pintura digital en vivo</li>
+            <li>🗣️ 30 Mayo - Conversatorio con artistas invitados</li>
+        </ul>
+    </section>
+
+</main>
 
             <script type="text/javascript">
      function mostrarAlerta() {

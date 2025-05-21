@@ -23,6 +23,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 <li><a href="galeria.php">Galería</a></li>
                 <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="comentarios.php">Comentarios</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <li><a href="#">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</a></li>
                     <li><a href="logout.php">Cerrar sesión</a></li>
@@ -37,15 +38,49 @@ if (!isset($_SESSION['usuario_id'])) {
     <section id="galeria">
         <h2>Nuestra Galería</h2>
         <div class="gallery">
-            <li><a href="obra1.php"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg/1200px-Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg" alt="obra1"></a></li>
-            <li><a href="obra2.php"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Goya.hund.jpg/245px-Goya.hund.jpg" alt="Obra 2"></a></li>
-            <li><a href="obra3.php"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/GOYA_-_El_aquelarre_%28Museo_L%C3%A1zaro_Galdiano%2C_Madrid%2C_1797-98%29.jpg/640px-GOYA_-_El_aquelarre_%28Museo_L%C3%A1zaro_Galdiano%2C_Madrid%2C_1797-98%29.jpg" alt="Obra 3"></a></li>
-            <li><a href="obra4.php"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Fragonard%2C_The_Swing.jpg/1200px-Fragonard%2C_The_Swing.jpg" alt="Obra 4"></a></li>
-            <li><a href="obra5.php"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Psycheabduct.jpg" alt="Obra 5"></a></li>
-            
+           <div class="gallery-item">
+  <a href="obra1.php">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg/1200px-Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg" alt="La dama del armiño">
+    <p>La dama del armiño - Leonardo da Vinci</p>
+  </a>
+</div>
+
+<div class="gallery-item">
+  <a href="obra2.php">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Goya.hund.jpg/245px-Goya.hund.jpg" alt="El perro semihundido">
+    <p>El perro semihundido - Francisco de Goya</p>
+  </a>
+</div>
+
+<div class="gallery-item">
+  <a href="obra3.php">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/GOYA_-_El_aquelarre_%28Museo_L%C3%A1zaro_Galdiano%2C_Madrid%2C_1797-98%29.jpg/640px-GOYA_-_El_aquelarre_%28Museo_L%C3%A1zaro_Galdiano%2C_Madrid%2C_1797-98%29.jpg" alt="El aquelarre">
+    <p>El aquelarre - Francisco de Goya</p>
+  </a>
+</div>
+
+<div class="gallery-item">
+  <a href="obra4.php">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Fragonard%2C_The_Swing.jpg/1200px-Fragonard%2C_The_Swing.jpg" alt="El columpio">
+    <p>El columpio - Jean-Honoré Fragonard</p>
+  </a>
+</div>
+
+<div class="gallery-item">
+  <a href="obra5.php">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Psycheabduct.jpg" alt="El rapto de Psique">
+    <p>El rapto de Psique - William-Adolphe Bouguereau</p>
+  </a>
+</div
+
         </div>
     </section>
-    
+
+
+    <!-- Contenedor de horarios -->
+    <div id="horarios">
+        <?php include 'mostrar_horarios.php'; ?>
+    </div>
     <section id="footer">
 
         <footer>

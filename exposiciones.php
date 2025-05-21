@@ -25,6 +25,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 <li><a href="galeria.php">Galería</a></li>
                 <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="comentarios.php">Comentarios</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <li><a href="#">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</a></li>
                     <li><a href="logout.php">Cerrar sesión</a></li>
@@ -36,46 +37,35 @@ if (!isset($_SESSION['usuario_id'])) {
         </nav>
     </header>
 
-   
-   <div class="izquierdaEx">
-    <section id="expo">
-  
-        <h2>Nuestras Exposiciones</h2>
-        
+ <main class="contenedor-exposiciones">
+        <div class="izquierdaEx">
+            <h2>Nuestras Exposiciones</h2>
             <h3>Historia del Arte</h3>
             <p>Un recorrido por las grandes obras de la historia.</p>
-       
+
             <h3>Arte Contemporáneo</h3>
             <p>Las tendencias más innovadoras del arte actual.</p>
-       
+
             <h3>Escultura y Fotografía</h3>
             <p>Explorando la tridimensionalidad y la captura del instante.</p>
-       
-  </section>
- </div>
+        </div>
 
+        <div class="derechaEx">
+            <h2>Recorrido Virtual</h2>
+            <div class="recorrido-container">
+                <iframe 
+                    title="Recorrido Virtual Galeón de Manila" 
+                    class="recorrido-virtual"
+                    src="https://s6i3rkxswzzvjtgx9bcsha.on.drv.tw/Videos%20360/www.galeondemanilav1.com/" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </main>
 
-<div class="derechaEx">
-    <section id="expo">
-    <div class="recorrido-container">
-        <iframe 
-            title="Recorrido Virtual Galeón de Manila" 
-            class="recorrido-virtual"
-            src="https://s6i3rkxswzzvjtgx9bcsha.on.drv.tw/Videos%20360/www.galeondemanilav1.com/" 
-            allowfullscreen>
-        </iframe>
-    </div>
-    </section>
-</div>
- 
-
-
-<section id="footer">
-
-    
+    <footer id="footer">
         <p>&copy; 2025 Museo Virtual. Todos los derechos reservados.</p>
     </footer>
-</section>
 
 </body>
 </html>

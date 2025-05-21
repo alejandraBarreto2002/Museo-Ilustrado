@@ -25,6 +25,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 <li><a href="galeria.php">Galería</a></li>
                 <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="comentarios.php">Comentarios</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <li><a href="#">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</a></li>
                     <li><a href="logout.php">Cerrar sesión</a></li>
@@ -43,12 +44,21 @@ if (!isset($_SESSION['usuario_id'])) {
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Fragonard%2C_The_Swing.jpg/1200px-Fragonard%2C_The_Swing.jpg" width="564" height="708.75" alt="Obra 1">
         </div>
         <div class="textoGal">
-            <h2>Nombre de la obra</h2>
-            <h3>Nombre Autor</h3>
-            <p>Año de publicacion</p>
-            <h3>Informacion de la pintura</h3>
-            <p>trasfondo</p>
-        
+                <h2>El columpio</h2>
+                <h3>Jean-Honoré Fragonard</h3>
+                <p><strong>Año:</strong> 1767</p>
+                <p><strong>Técnica:</strong> Óleo sobre lienzo</p>
+                <p><strong>Dimensiones:</strong> 81 × 64 cm</p>
+                <p><strong>Ubicación:</strong> Wallace Collection, Londres, Reino Unido</p>
+
+                <h3>Información de la pintura</h3>
+                <p>
+                    "El columpio" es una obra emblemática del rococó francés que captura la frivolidad y la elegancia de la aristocracia del siglo XVIII. Representa a una joven noble en un columpio, impulsada por un hombre mayor mientras otro hombre, escondido en la maleza, la observa con admiración. La escena es un juego de seducción y coquetería, rodeada de un jardín exuberante y detalles ornamentales.
+                </p>
+                <p>
+                    Fragonard utiliza una paleta luminosa y pinceladas sueltas para transmitir la ligereza y el dinamismo de la escena. Esta pintura es un ejemplo clásico del arte rococó, con su énfasis en el placer, la naturaleza y el desenfado.
+                </p>
+            </div>
         </div>
     </section>
     
@@ -60,6 +70,18 @@ if (!isset($_SESSION['usuario_id'])) {
     </section>
 
 
+<script>
+let startTime = Date.now();
+
+window.addEventListener('beforeunload', function () {
+    let tiempoVisualizacion = Math.floor((Date.now() - startTime) / 1000); // en segundos
+    let datos = new FormData();
+    datos.append('tiempo', tiempoVisualizacion);
+    datos.append('id_exhibicion', 4); // ← Asegúrate de poner el ID real de esta obra en tu base de datos
+
+    navigator.sendBeacon('guardar_visita.php', datos);
+});
+</script>
 
 </body>
 

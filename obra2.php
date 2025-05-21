@@ -25,6 +25,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 <li><a href="galeria.php">Galería</a></li>
                 <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="comentarios.php">Comentarios</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <li><a href="#">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</a></li>
                     <li><a href="logout.php">Cerrar sesión</a></li>
@@ -40,24 +41,25 @@ if (!isset($_SESSION['usuario_id'])) {
         <div class="contenedorGal">
        
         <div class="imagenGal">
-             
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Goya.hund.jpg/245px-Goya.hund.jpg" height="631.5" width="367.5" alt="Obra 1">
         </div>
         <div class="textoGal">
-            <h2>Nombre de la obra</h2>
-            <h3>Nombre Autor</h3>
-            <p>Año de publicacion</p>
-        
-        
-            <h3>Informacion de la pintura</h3>
-            <p>trasfondo</p>
-        </div>
+         <h2>El perro semihundido</h2>
+                <h3>Francisco de Goya</h3>
+                <p><strong>Año:</strong> ca. 1819–1823</p>
+                <p><strong>Técnica:</strong> Óleo mural trasladado a lienzo</p>
+                <p><strong>Dimensiones:</strong> 131 × 79 cm</p>
+                <p><strong>Ubicación:</strong> Museo del Prado, Madrid, España</p>
 
+                <h3>Información de la pintura</h3>
+                <p>
+                    Esta obra forma parte de las llamadas “Pinturas negras” que Goya pintó directamente sobre los muros de su casa, la Quinta del Sordo. La imagen muestra a un perro parcialmente sumido en un fondo terroso y vacío, con una expresión de aparente desesperanza. 
+                    Su composición radical y la ambigüedad de la escena han sido objeto de múltiples interpretaciones, desde una metáfora de la soledad y el sufrimiento humano, hasta una crítica existencial al destino del ser. 
+                    Es considerada una de las obras más enigmáticas y modernas de Goya.
+                </p>
+            </div>
         </div>
     </section>
-
-   
-
 
     <section id="footer">
 
@@ -68,6 +70,18 @@ if (!isset($_SESSION['usuario_id'])) {
 
 
 
+<script>
+let startTime = Date.now();
+
+window.addEventListener('beforeunload', function () {
+    let tiempoVisualizacion = Math.floor((Date.now() - startTime) / 1000); // en segundos
+    let datos = new FormData();
+    datos.append('tiempo', tiempoVisualizacion);
+    datos.append('id_exhibicion', 2); // ← Asegúrate de poner el ID real de esta obra en tu base de datos
+
+    navigator.sendBeacon('guardar_visita.php', datos);
+});
+</script>
 
 </body>
 

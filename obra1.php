@@ -27,6 +27,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 <li><a href="galeria.php">Galería</a></li>
                 <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="comentarios.php">Comentarios</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <li><a href="#">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</a></li>
                     <li><a href="logout.php">Cerrar sesión</a></li>
@@ -38,30 +39,27 @@ if (!isset($_SESSION['usuario_id'])) {
         </nav>
     </header>
 
-    
     <section id="obra1">
-
         <div class="contenedorGal">
-        
+            <div class="imagenGal">   
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg/1200px-Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg" width="400" alt="Obra 1">
+            </div>
+            <div class="textoGal">
+                <h2>La dama del armiño</h2>
+                <h3>Leonardo da Vinci</h3>
+                <p><strong>Año:</strong> ca. 1489–1490</p>
+                <p><strong>Técnica:</strong> Óleo sobre tabla</p>
+                <p><strong>Dimensiones:</strong> 54 × 39 cm</p>
+                <p><strong>Ubicación:</strong> Museo Czartoryski, Cracovia, Polonia</p>
 
-        <div class="imagenGal">
-            
-            
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg/1200px-Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg" width="526.5" height="708.75"  alt="Obra 1">
-       
-</div>
-        <div class="textoGal">
-            <h2>Nombre de la obra</h2>
-            <h3>Nombre Autor</h3>
-            <p>Año de publicacion</p>
-       
-        
-            <h3>Informacion de la pintura</h3>
-            <p>trasfondo</p>
-         </div>
-
-</div>
-
+                <h3>Descripción</h3>
+                <p>
+                    Esta obra es uno de los cuatro retratos femeninos pintados por Leonardo da Vinci. Representa a Cecilia Gallerani, una joven culta y poeta que fue amante de Ludovico Sforza, duque de Milán.
+                    El armiño que sostiene en brazos simboliza la pureza y también hace referencia al emblema heráldico de Ludovico, conocido como “el Ermellino”. La pintura destaca por su innovación en la representación del movimiento y la psicología del personaje, algo revolucionario en su época.
+                </p>
+            </div>
+        </div>
+    </section>
    
 
 
@@ -73,7 +71,18 @@ if (!isset($_SESSION['usuario_id'])) {
 </section>
 
 
+<script>
+let startTime = Date.now();
 
+window.addEventListener('beforeunload', function () {
+    let tiempoVisualizacion = Math.floor((Date.now() - startTime) / 1000); // en segundos
+    let datos = new FormData();
+    datos.append('tiempo', tiempoVisualizacion);
+    datos.append('id_exhibicion', 1); // ← Asegúrate de poner el ID real de esta obra en tu base de datos
+
+    navigator.sendBeacon('guardar_visita.php', datos);
+});
+</script>
 </body>
 
 

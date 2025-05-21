@@ -5,6 +5,29 @@ if (!isset($_SESSION['usuario_id'])) {
     header("Location: sesion.php?mensaje=debes_loguearte");
     exit();
 }
+// Conexión a base de datos
+$conexion = new mysqli("localhost", "root", "", "museo"); // Ajusta tus credenciales si es necesario
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
+}
+
+// Procesar el formulario
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $usuario_id = $_SESSION['usuario_id'];
+    $nombre = $_POST['nombre'];
+    $valoracion = intval($_POST['rango']);
+    $mensaje = $_POST['mensaje'];
+    $exhibicion_id = intval($_POST['exhibicion']);
+    $fecha = date("Y-m-d H:i:s");
+
+    // Insertar comentario
+    $stmt = $conexion->prepare("INSERT INTO Comentario (Texto, Valoracion, Fecha, ID_Usuario, ID_Exhibicion) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sisii", $mensaje, $valoracion, $fecha, $usuario_id, $exhibicion_id);
+    $stmt->execute();
+    $stmt->close();
+
+    $mensaje_exito = "Comentario enviado correctamente.";
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,6 +48,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 <li><a href="galeria.php">Galería</a></li>
                 <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="comentarios.php">Comentarios</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <li><a href="#">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</a></li>
                     <li><a href="logout.php">Cerrar sesión</a></li>
@@ -36,109 +60,94 @@ if (!isset($_SESSION['usuario_id'])) {
         </nav>
     </header>
     <section id="comentarios">
-        <title>Comentarios de la exposicion</title>
-    <style>
-        form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        input[type="radio"], input[type="checkbox"] {
-            width: auto;
-            margin-right: 10px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .radio-group, .checkbox-group {
-            margin: 10px 0;
-        }
-    </style>
-<h1>comentarios de la exposicion</h1>
-    
-<form action="/procesar-formulario" method="post">
-    <h2>Escribe tu comentario</h2>
-    
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-    
-   <h3>Dale una puntuacion al museo virtual</h3> 
-    <label for="rango">Nivel de Satisfacción (1-10):</label>
-    <input type="range" id="rango" name="rango" min="1" max="10" value="5">
+   <section id="comentarios">
+    <h1>Comentarios de la exposición</h1>
 
-    
-    <fieldset>
-        <legend>Intereses en obras:</legend>
+    <?php if (isset($mensaje_exito)): ?>
+        <p class="mensaje-exito"><?php echo $mensaje_exito; ?></p>
+    <?php endif; ?>
+
+    <form action="comentarios.php" method="post">
+        <h2>Escribe tu comentario</h2>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?>" readonly>
+
+        <label for="exhibicion">Selecciona una exposición:</label>
+        <select id="exhibicion" name="exhibicion" required>
+            <?php
+            $resultado = $conexion->query("SELECT ID_Exhibicion, Titulo FROM Exhibicion");
+            while ($fila = $resultado->fetch_assoc()) {
+                echo "<option value='{$fila['ID_Exhibicion']}'>" . htmlspecialchars($fila['Titulo']) . "</option>";
+            }
+            ?>
+        </select>
+
+        <h3>Calificación de la obra:</h3>
+<div class="estrellas">
+    <input type="radio" id="estrella5" name="rango" value="5" required>
+    <label for="estrella5" title="5 estrellas">&#9733;</label>
+    <input type="radio" id="estrella4" name="rango" value="4">
+    <label for="estrella4" title="4 estrellas">&#9733;</label>
+    <input type="radio" id="estrella3" name="rango" value="3">
+    <label for="estrella3" title="3 estrellas">&#9733;</label>
+    <input type="radio" id="estrella2" name="rango" value="2">
+    <label for="estrella2" title="2 estrellas">&#9733;</label>
+    <input type="radio" id="estrella1" name="rango" value="1">
+    <label for="estrella1" title="1 estrella">&#9733;</label>
+</div>
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu comentario aquí..." required></textarea>
+
         <div class="checkbox-group">
-    <label for="clasica">Pintura clasica</label>
-            <input type="checkbox" id="clasica" name="intereses" value="clasica">
-            
+            <input type="checkbox" id="terminos" name="terminos" required>
+            <label for="terminos">Acepto los términos y condiciones</label>
         </div>
-        <div class="checkbox-group">
-             <label for="medieval">Pintura medieval</label>
-            <input type="checkbox" id="medieval" name="intereses" value="medieval">
-           
+
+        <button type="submit">Enviar</button>
+        <button type="reset">Limpiar</button>
+    </form>
+</section>
+<h2>Comentarios anteriores</h2>
+
+<?php
+$consulta = "
+    SELECT c.Texto, c.Valoracion, c.Fecha, u.Nombre AS Usuario, e.Titulo AS Exhibicion
+    FROM Comentario c
+    JOIN Usuario u ON c.ID_Usuario = u.ID_Usuario
+    JOIN Exhibicion e ON c.ID_Exhibicion = e.ID_Exhibicion
+    ORDER BY c.Fecha DESC
+";
+
+$resultadoComentarios = $conexion->query($consulta);
+
+if ($resultadoComentarios->num_rows > 0):
+    while ($comentario = $resultadoComentarios->fetch_assoc()):
+?>
+    <div class="comentario">
+        <h3><?php echo htmlspecialchars($comentario['Exhibicion']); ?></h3>
+        <p><strong><?php echo htmlspecialchars($comentario['Usuario']); ?></strong> comentó el <?php echo date("d/m/Y H:i", strtotime($comentario['Fecha'])); ?>:</p>
+        <div class="estrellas-mostradas">
+            <?php
+                $valoracion = intval($comentario['Valoracion']);
+                for ($i = 1; $i <= 5; $i++) {
+                    echo $i <= $valoracion ? '★' : '☆';
+                }
+            ?>
         </div>
-        <div class="checkbox-group">
-            <label for="renacentista">Pintura renacentista</label>
-            <input type="checkbox" id="renacentista" name="intereses" value="renacentista">
-            
-        </div>
-        <div class="checkbox-group">
-            <label for="barroca">Pintura barroca</label>
-            <input type="checkbox" id="barroca" name="intereses" value="barroca">
-            
-        </div>
-        <div class="checkbox-group">
-             <label for="romantica">pintura romantica</label>
-            <input type="checkbox" id="romantica" name="intereses" value="romantica">
-           
-        </div>
-    </fieldset>
-    
-    <label for="mensaje">Mensaje:</label>
-    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu comentario aquí..."></textarea>
-    
-    
-    <div class="checkbox-group">
-        <input type="checkbox" id="terminos" name="terminos" required>
-        <label for="terminos">Acepto los términos y condiciones</label>
+        <p><?php echo nl2br(htmlspecialchars($comentario['Texto'])); ?></p>
+        <hr>
     </div>
-    
-    <button type="submit">Enviar</button>
-    <button type="reset">Limpiar</button>
-</form>
-
-    </section>
-    
-   
-
-    <section id="footer">
-
-        <footer>
-            <p>&copy; 2025 Museo Virtual. Todos los derechos reservados.</p>
-        </footer>
-    </section>
-
-
+<?php
+    endwhile;
+else:
+    echo "<p>No hay comentarios aún. ¡Sé el primero en dejar uno!</p>";
+endif;
+?>
+<section id="footer">
+    <footer>
+        <p>&copy; 2025 Museo Virtual. Todos los derechos reservados.</p>
+    </footer>
+</section>
 </body>
+</html>

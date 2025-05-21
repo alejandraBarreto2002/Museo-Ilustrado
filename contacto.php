@@ -24,6 +24,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 <li><a href="galeria.php">Galería</a></li>
                 <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="comentarios.php">Comentarios</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <li><a href="#">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</a></li>
                     <li><a href="logout.php">Cerrar sesión</a></li>
@@ -44,10 +45,6 @@ if (!isset($_SESSION['usuario_id'])) {
         <div class="contacto">
             <h3>Dylan Robles</h3>
             <p>Correo B.</p>
-        </div>
-        <div class="contacto">
-            <h3>Lina Velasco</h3>
-            <p>Correo C.</p>
         </div>
     </section>
     

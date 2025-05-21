@@ -25,6 +25,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 <li><a href="galeria.php">Galería</a></li>
                 <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="comentarios.php">Comentarios</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <li><a href="#">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</a></li>
                     <li><a href="logout.php">Cerrar sesión</a></li>
@@ -43,13 +44,21 @@ if (!isset($_SESSION['usuario_id'])) {
             <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Psycheabduct.jpg" width="394.5" height="708.75" alt="Obra 1">
         </div>
         <div class="textoGal">
-            <h2>Nombre de la obra</h2>
-            <h3>Nombre Autor</h3>
-            <p>Año de publicacion</p>
-        
-            <h3>Informacion de la pintura</h3>
-            <p>trasfondo</p>
-        </div>
+                <h2>El rapto de Psique</h2>
+                <h3>William-Adolphe Bouguereau</h3>
+                <p><strong>Año:</strong> 1895</p>
+                <p><strong>Técnica:</strong> Óleo sobre lienzo</p>
+                <p><strong>Dimensiones:</strong> 259 × 184 cm</p>
+                <p><strong>Ubicación:</strong> Colección privada</p>
+
+                <h3>Información de la pintura</h3>
+                <p>
+                    Esta obra representa el momento en que Cupido (Eros) rapta a Psique, una escena inspirada en la mitología clásica que simboliza la unión del alma y el amor. Bouguereau destaca por su técnica académica impecable y su realismo idealizado, mostrando figuras humanas con un gran detalle anatómico y suavidad en las texturas.
+                </p>
+                <p>
+                    La composición está llena de dinamismo y sensualidad, con un uso magistral de la luz para resaltar la pureza y belleza de las figuras, mientras que los detalles en los rostros y las posturas transmiten ternura y emoción. Es un ejemplo representativo del academicismo francés del siglo XIX.
+                </p>
+            </div>
         </div>
     </section>
     
@@ -61,6 +70,18 @@ if (!isset($_SESSION['usuario_id'])) {
     </section>
 
 
+<script>
+let startTime = Date.now();
+
+window.addEventListener('beforeunload', function () {
+    let tiempoVisualizacion = Math.floor((Date.now() - startTime) / 1000); // en segundos
+    let datos = new FormData();
+    datos.append('tiempo', tiempoVisualizacion);
+    datos.append('id_exhibicion', 5); // ← Asegúrate de poner el ID real de esta obra en tu base de datos
+
+    navigator.sendBeacon('guardar_visita.php', datos);
+});
+</script>
 
 </body>
 
